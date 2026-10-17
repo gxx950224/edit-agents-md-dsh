@@ -1,0 +1,222 @@
+/*
+ * ⚠️ 复用优先（本文件的存在意义只有"DSH 没提供的布局"）：
+ *   - 控件：全部来自 @deepseek-ai/dsh-client-ui-primitives，**不要**自己写按钮/输入框；
+ *   - 颜色、圆角、文字层级：一律用 DSH 设计令牌（--dsw-*），**不要**硬编码 hex/px 魔数。
+ *     本文件的圆角用 --dsw-radius-md、辅助文字用 --dsw-alias-label-tertiary，
+ *     取值依据是官方 primitives/lib/settings-form/*.css 自己的用法（见文件内注释）。
+ *   - 类名前缀 Eam_ 是插件专属命名空间：DSH 把所有插件的 <style> 注入同一文档，
+ *     而 esbuild local-css 的作用域名只按「CSS 文件名 + 类名」生成、**不带包名**，
+ *     同名即互相覆盖（本项目已因此把 mcp-ui-dsh 的表单样式改乱过一次）。
+ */
+
+.Eam_page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 2px 24px;
+  /* 占满设置面板宽度：编辑区要尽可能大 */
+  max-width: none;
+  min-height: 0;
+}
+
+.Eam_heading {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--dsw-alias-label-primary);
+}
+
+.Eam_intro {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dsw-alias-label-secondary);
+}
+
+.Eam_notice {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dsw-alias-label-secondary);
+}
+
+.Eam_grow {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.Eam_hint {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+/* ---------- 顶部工具条 ---------- */
+.Eam_toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ---------- 错误 / 警告条 ---------- */
+.Eam_error {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--dsw-alias-state-error-primary);
+  border-radius: var(--dsw-radius-md);
+  background: var(--dsw-alias-bg-layer-1);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dsw-alias-state-error-primary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.Eam_warn {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--dsw-alias-state-warn-primary);
+  border-radius: var(--dsw-radius-md);
+  background: var(--dsw-alias-bg-layer-1);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dsw-alias-label-primary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.Eam_warnActions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.Eam_inlineError {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--dsw-alias-state-error-primary);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- 主体：只有一个文件，编辑区直接占满 ---------- */
+.Eam_main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 auto;
+  /* min-height:0 让内部 flex 子项（editor/preview）能真正吃到剩余高度 */
+  min-height: min(74vh, 820px);
+  min-width: 0;
+}
+
+.Eam_editorHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/*
+ * 路径行：路径 + 复制按钮（路径的附属动作，紧挨其后） + 弹性空隙 + 编辑/预览。
+ * 用 `flex: 0 1 auto` 而不是 `1 1 240px` —— 后者会把路径撑满整行，把紧跟其后的
+ * 复制按钮推到行中央，看起来像"无主按钮"。
+ */
+.Eam_path {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 62%;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--dsw-alias-label-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 编辑 / 预览 切换 */
+.Eam_viewSwitch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.Eam_editor {
+  width: 100%;
+  /* 吃掉剩余高度：不再固定高度（那是"编辑区过小"的主因）。 */
+  flex: 1 1 auto;
+  min-height: 480px;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid var(--dsw-alias-border-l2);
+  border-radius: var(--dsw-radius-md);
+  background: var(--dsw-alias-bg-base);
+  color: var(--dsw-alias-label-primary);
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  resize: vertical;
+  tab-size: 2;
+}
+
+.Eam_editor:focus {
+  outline: 2px solid var(--dsw-alias-brand-primary);
+  outline-offset: -1px;
+}
+
+.Eam_editorReadonly {
+  border-color: var(--dsw-alias-border-l1);
+  background: var(--dsw-alias-bg-layer-1);
+  color: var(--dsw-alias-label-secondary);
+}
+
+/* Markdown 预览：与编辑区同高、独立滚动，样式只用令牌 */
+.Eam_preview {
+  flex: 1 1 auto;
+  min-height: 480px;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border: 1px solid var(--dsw-alias-border-l2);
+  border-radius: var(--dsw-radius-md);
+  background: var(--dsw-alias-bg-base);
+  color: var(--dsw-alias-label-primary);
+  overflow-y: auto;
+}
+
+.Eam_meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+.Eam_overBudget {
+  font-weight: 600;
+  color: var(--dsw-alias-state-error-primary);
+}
+
+/* 窄屏：编辑区仍然独占整宽 */
+@media (max-width: 760px) {
+  .Eam_editor,
+  .Eam_preview {
+    min-height: 360px;
+  }
+}

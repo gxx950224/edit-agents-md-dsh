@@ -1,0 +1,187 @@
+/* client/Eam.module.css */
+.Eam_9d0ae281_page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 2px 24px;
+  max-width: none;
+  min-height: 0;
+}
+.Eam_9d0ae281_heading {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--dsw-alias-label-primary);
+}
+.Eam_9d0ae281_intro {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dsw-alias-label-secondary);
+}
+.Eam_9d0ae281_notice {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dsw-alias-label-secondary);
+}
+.Eam_9d0ae281_grow {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.Eam_9d0ae281_hint {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--dsw-alias-label-tertiary);
+}
+.Eam_9d0ae281_toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.Eam_9d0ae281_error {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--dsw-alias-state-error-primary);
+  border-radius: var(--dsw-radius-md);
+  background: var(--dsw-alias-bg-layer-1);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dsw-alias-state-error-primary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.Eam_9d0ae281_warn {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--dsw-alias-state-warn-primary);
+  border-radius: var(--dsw-radius-md);
+  background: var(--dsw-alias-bg-layer-1);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dsw-alias-label-primary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.Eam_9d0ae281_warnActions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.Eam_9d0ae281_inlineError {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--dsw-alias-state-error-primary);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.Eam_9d0ae281_main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-height: min(74vh, 820px);
+  min-width: 0;
+}
+.Eam_9d0ae281_editorHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.Eam_9d0ae281_path {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 62%;
+  font-family:
+    ui-monospace,
+    "Cascadia Mono",
+    Consolas,
+    monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--dsw-alias-label-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.Eam_9d0ae281_viewSwitch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+.Eam_9d0ae281_editor {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 480px;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid var(--dsw-alias-border-l2);
+  border-radius: var(--dsw-radius-md);
+  background: var(--dsw-alias-bg-base);
+  color: var(--dsw-alias-label-primary);
+  font-family:
+    ui-monospace,
+    "Cascadia Mono",
+    Consolas,
+    monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  resize: vertical;
+  tab-size: 2;
+}
+.Eam_9d0ae281_editor:focus {
+  outline: 2px solid var(--dsw-alias-brand-primary);
+  outline-offset: -1px;
+}
+.Eam_9d0ae281_editorReadonly {
+  border-color: var(--dsw-alias-border-l1);
+  background: var(--dsw-alias-bg-layer-1);
+  color: var(--dsw-alias-label-secondary);
+}
+.Eam_9d0ae281_preview {
+  flex: 1 1 auto;
+  min-height: 480px;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border: 1px solid var(--dsw-alias-border-l2);
+  border-radius: var(--dsw-radius-md);
+  background: var(--dsw-alias-bg-base);
+  color: var(--dsw-alias-label-primary);
+  overflow-y: auto;
+}
+.Eam_9d0ae281_meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--dsw-alias-label-tertiary);
+}
+.Eam_9d0ae281_overBudget {
+  font-weight: 600;
+  color: var(--dsw-alias-state-error-primary);
+}
+@media (max-width: 760px) {
+  .Eam_9d0ae281_editor,
+  .Eam_9d0ae281_preview {
+    min-height: 360px;
+  }
+}
+
+/* .build-tmp/entry.css */

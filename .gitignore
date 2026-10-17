@@ -1,0 +1,10 @@
+# 依赖（本地以 junction 借用参考安装，不进仓库）
+node_modules/
+
+# 构建中间产物
+.build-tmp/
+*.tgz
+
+# 本地覆盖 / 临时文件
+.tmp/
+*.local.md

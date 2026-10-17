@@ -1,0 +1,13 @@
+# @gxx-labs/edit-agents-md-dsh 的 bundle patch：本包自带的 Loader 行。
+#
+# 行名必须是**精确包名**：dsh-client-modules 的 exactPackageSpecifier() 对 @ 开头的
+# 写法只接受 split('/') 恰好两段，任何子路径都会返回 undefined 且该行被放弃解析 ——
+# 浏览器半就登记不进 __DSH_BOOT__，设置页签不会出现。
+#
+# 关于引号：`@gxx-labs/edit-agents-md-dsh` 带 @ 作用域，YAML name 值必须加引号。
+# 一行同时挂载两个半边：
+#   - 宿主半   lib/index.js    → /api/edit-agents/* 路由 + 指令文件读写 + 「立即刷新」
+#   - 浏览器半 dist/client.js  → 设置 → AGENT 页签（在线编辑 AGENTS.md）
+- insert:
+    - id: edit-agents-md-dsh
+      name: '@gxx-labs/edit-agents-md-dsh'

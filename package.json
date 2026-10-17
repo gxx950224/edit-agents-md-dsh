@@ -1,0 +1,75 @@
+{
+  "name": "@gxx-labs/edit-agents-md-dsh",
+  "version": "0.2.3",
+  "description": "DSH 插件：设置 → 系统指令 —— 在线编辑 DSH 真正加载的用户全局指令 $DSH_HOME/AGENTS.md（注意：单数 AGENT.md 不会被加载）。保存固定使用插件自身的最高权限写入，不需要切换当前会话的权限模式；带 Markdown 预览、版本冲突保护（409 不覆盖），并提供「立即刷新」发起真实的第一方 read 调用，让改动即时生效。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./dist/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/",
+    "dist/",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build-client.mjs",
+    "verify": "node scripts/verify-bundle.mjs",
+    "test": "node --test \"test/*.test.mjs\"",
+    "smoke": "node scripts/smoke-client.mjs",
+    "e2e": "node scripts/e2e-live.mjs",
+    "check": "node scripts/build-client.mjs && node scripts/verify-bundle.mjs && node --test \"test/*.test.mjs\" && node scripts/smoke-client.mjs && node scripts/e2e-live.mjs",
+    "install:local": "node scripts/install-live.mjs",
+    "uninstall:local": "node scripts/install-live.mjs --uninstall",
+    "install:status": "node scripts/install-live.mjs --status",
+    "verify:install": "node scripts/verify-install.mjs",
+    "verify:load": "node scripts/load-live.mjs",
+    "scan:css": "node scripts/scan-css-collisions.mjs"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "cordis",
+    "agents-md",
+    "agents",
+    "instructions",
+    "system-prompt",
+    "settings"
+  ],
+  "author": "guoxiaoxi",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gxx950224/edit-agents-md-dsh.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-slots"
+      ],
+      "external": [
+        "@deepseek-ai/dsh-client-ui-primitives",
+        "react"
+      ]
+    }
+  }
+}
